@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="header-contact">
+
+    </div>
     <customMenu></customMenu>
     <router-view/>
   </div>
@@ -23,5 +26,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.header-contact {
+  height: 50px;
+  background-color: gainsboro;
+  margin: 0;
 }
 </style>

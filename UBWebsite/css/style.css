@@ -338,11 +338,25 @@ i:before {
   font-weight: normal;
 }
 
+.banner_inner_text h3 {
+  font-size: 58px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+
 .banner_inner_text p {
   font-size: 24px;
   color: #92caff;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
+  padding-top: 15px;
+}
+
+.banner_inner_text h4 {
+  font-size: 22px;
+  color: white;
+  font-weight: 400;
   padding-top: 15px;
 }
 

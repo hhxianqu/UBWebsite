@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div class="header-contact">
-
-    </div>
     <customMenu></customMenu>
     <router-view/>
   </div>

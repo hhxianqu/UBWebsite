@@ -146,6 +146,14 @@ i:before {
   padding: 0px 45px;
 }
 
+.navbar-img {
+  width: 15vw;
+}
+
+.nav-link {
+  text-align: center;
+}
+
 .main_menu_area .navbar {
   padding: 0px;
   border-radius: 0px;

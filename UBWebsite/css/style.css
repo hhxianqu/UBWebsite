@@ -120,7 +120,7 @@ i:before {
 }
 
 .l_title h2 {
-  font-size: 48px;
+  font-size: 32px;
   color: #0b1033;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -1339,7 +1339,7 @@ i:before {
 /* Get In Touch Area css
 ============================================================================================ */
 .get_in_touch_area {
-  padding-top: 100px;
+  padding: 100px 0;
 }
 
 .contact_us_form {
@@ -2271,7 +2271,7 @@ i:before {
 }
 
 .f_title {
-  padding-bottom: 45px;
+  padding-bottom: 35px;
 }
 
 .f_title h3 {
@@ -2279,6 +2279,15 @@ i:before {
   color: #fff;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+  line-height: 28px;
+}
+
+.f_contain {
+  color: #fff;
+}
+
+.f_contain img {
+  width: 175px;
 }
 
 .f_about_widget {
@@ -2382,26 +2391,13 @@ i:before {
   padding: 35px 0px;
 }
 
-.footer_copyright .float-sm-left h5 {
+.footer_copyright .float-sm-left h5, .footer_copyright .float-sm-right h5 {
   font-size: 14px;
-  color: #2a2f56;
+  color: #535672;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   line-height: 29px;
-}
-
-.footer_copyright .float-sm-right ul li {
-  display: inline-block;
-  margin-right: 32px;
-}
-
-.footer_copyright .float-sm-right ul li a {
-  font-size: 14px;
-  color: #2a2f56;
-  -webkit-transition: all 400ms linear 0s;
-  -o-transition: all 400ms linear 0s;
-  transition: all 400ms linear 0s;
 }
 
 .footer_copyright .float-sm-right ul li:last-child {
@@ -2410,6 +2406,16 @@ i:before {
 
 .footer_copyright .float-sm-right ul li:hover a {
   color: #fff;
+}
+
+.foot-link {
+  color: #fff;
+  font-weight: 300;
+}
+
+.foot-link:hover {
+  color: #fff;
+  font-weight: 500;
 }
 
 /* End Footer Area css

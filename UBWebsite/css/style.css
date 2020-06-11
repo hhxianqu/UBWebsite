@@ -1674,7 +1674,7 @@ i:before {
   margin-top: -13px;
 }
 
-.circle_progress .circle_progress_inner h4 {
+.circle_progress .circle_progress_inner h4{
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   color: #7c8d93;
@@ -1688,6 +1688,16 @@ i:before {
   width: 100%;
   text-align: center;
   margin-top: 18px;
+}
+
+.circle_progress_sp h4 {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  color: #7c8d93;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .circle_progress .circle_progress_inner .percentage {

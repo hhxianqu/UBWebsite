@@ -682,7 +682,7 @@ i:before {
   margin-bottom: 15px;
 }
 
-.team_people_text ul li a {
+.team_people_text ul li{
   padding-left: 18px;
   font-family: "Roboto", sans-serif;
   color: #7c8d93;
@@ -695,7 +695,7 @@ i:before {
   transition: all 400ms linear 0s;
 }
 
-.team_people_text ul li a:before {
+.team_people_text ul li:before {
   content: "";
   height: 5px;
   width: 5px;
@@ -720,11 +720,11 @@ i:before {
   margin-bottom: 0px;
 }
 
-.team_people_text ul li:hover a {
+.team_people_text ul li:hover {
   color: #a6d7ff;
 }
 
-.team_people_text ul li:hover a:before {
+.team_people_text ul li:hover:before {
   left: 4px;
 }
 
@@ -1799,6 +1799,9 @@ i:before {
   position: relative;
 }
 
+.blog_img .img-fluid{
+  width: 1110px;
+}
 .blog_img .blog_date {
   position: absolute;
   left: 0px;
@@ -1822,15 +1825,8 @@ i:before {
   padding: 18px 0px 16px 0px;
 }
 
-.blog_img .blog_date h4 {
-  font-size: 36px;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  padding-bottom: 5px;
-}
-
 .blog_img .blog_date h5 {
-  font-size: 12px;
+  font-size: 22px;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
 }

@@ -533,13 +533,17 @@ i:before {
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  background: rgb(101, 131, 204);;
+  background: rgb(109, 140, 218);
   display: inline-block;
   margin-right: 8px;
 }
 
 .testimonials_slider .owl-dots .owl-dot:last-child {
   margin-right: 0px;
+}
+
+.testimonials_slider .owl-dots .owl-dot.active {
+  background: rgb(196, 189, 236);
 }
 
 /* End Testimonials Slider css
@@ -1202,7 +1206,7 @@ i:before {
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  background: #fff;
+  background: #97ccfe;
   display: inline-block;
   margin-right: 10px;
 }
@@ -1212,7 +1216,7 @@ i:before {
 }
 
 .shap_slider_inner .owl-dots .owl-dot.active {
-  background: #97ccfe;
+  background: rgb(120, 155, 242);
 }
 
 .text_3d {

@@ -316,10 +316,8 @@ i:before {
   content: "";
   background: url(../img/banner/banner-bg.png) scroll center;
   position: absolute;
-  left: 20px;
   top: 10px;
   height: 100%;
-  max-width: 1233px;
   width: 100%;
 }
 

@@ -83,9 +83,6 @@
     .get_in_touch_area .touch_details {
         margin-left: 0px;
     }
-    .main_slider_area .rev_slider .tp-revslider-mainul li .slider_text_box .single_img {
-        display: none;
-    }
 }
 @media (max-width: 991px){
     .main_menu_area {

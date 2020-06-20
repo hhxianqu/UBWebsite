@@ -1719,16 +1719,16 @@ i:before {
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
-/* Blog Main Area css
+/* intro Main Area css
 ============================================================================================ */
-.blog_img {
+.intro_img {
   position: relative;
 }
 
-.blog_img .img-fluid{
+.intro_img .img-fluid{
   width: 1110px;
 }
-.blog_img .blog_date {
+.intro_img .intro_date {
   position: absolute;
   left: 0px;
   top: 40px;
@@ -1751,17 +1751,17 @@ i:before {
   padding: 18px 0px 16px 0px;
 }
 
-.blog_img .blog_date h5 {
+.intro_img .intro_date h5 {
   font-size: 22px;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
 }
 
-.blog_text {
+.intro_text {
   padding: 40px 30px 65px 30px;
 }
 
-.blog_text h4 {
+.intro_text h4 {
   font-size: 24px;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
@@ -1769,11 +1769,11 @@ i:before {
   padding-bottom: 5px;
 }
 
-.blog_text .blog_author {
+.intro_text .intro_author {
   padding-bottom: 30px;
 }
 
-.blog_text .blog_author a {
+.intro_text .intro_author a {
   font-size: 12px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -1782,7 +1782,7 @@ i:before {
   position: relative;
 }
 
-.blog_text .blog_author a:before {
+.intro_text .intro_author a:before {
   content: "|";
   position: absolute;
   right: -13px;
@@ -1793,15 +1793,15 @@ i:before {
   color: #7c8d93;
 }
 
-.blog_text .blog_author a:last-child {
+.intro_text .intro_author a:last-child {
   margin-right: 0px;
 }
 
-.blog_text .blog_author a:last-child:before {
+.intro_text .intro_author a:last-child:before {
   display: none;
 }
 
-.blog_text p {
+.intro_text p {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -1809,21 +1809,21 @@ i:before {
   color: #7c8d93;
 }
 
-.blog_text p + p {
+.intro_text p + p {
   padding-top: 30px;
 }
 
-.blog_text .more_btn {
+.intro_text .more_btn {
   margin-top: 45px;
 }
 
-.blog_main_item {
+.intro_main_item {
   -webkit-box-shadow: 0px 14px 38px 0px rgba(0, 0, 0, 0.11);
   box-shadow: 0px 14px 38px 0px rgba(0, 0, 0, 0.11);
   margin-bottom: 100px;
 }
 
-.blog_main_item:last-child {
+.intro_main_item:last-child {
   margin-bottom: 0px;
 }
 
@@ -2045,12 +2045,12 @@ i:before {
   padding-top: 25px;
 }
 
-.s_blog_social {
+.s_intro_social {
   padding-bottom: 80px;
   padding-left: 30px;
 }
 
-.s_blog_social h3 {
+.s_intro_social h3 {
   font-size: 18px;
   color: #0b1033;
   font-family: "Roboto", sans-serif;
@@ -2058,46 +2058,46 @@ i:before {
   display: inline-block;
 }
 
-.s_blog_social ul {
+.s_intro_social ul {
   display: inline-block;
 }
 
-.s_blog_social ul li {
+.s_intro_social ul li {
   display: inline-block;
   margin-left: 30px;
 }
 
-.s_blog_social ul li a {
+.s_intro_social ul li a {
   font-size: 12px;
   color: #0b1033;
 }
 
-.s_blog_social ul li:first-child {
+.s_intro_social ul li:first-child {
   margin-left: 40px;
 }
 
-.blog_author .media {
+.intro_author .media {
   vertical-align: middle;
 }
 
-.blog_author .media .d-flex {
+.intro_author .media .d-flex {
   padding-right: 20px;
   -ms-flex-item-align: center;
   align-self: center;
 }
 
-.blog_author .media .media-body h4 {
+.intro_author .media .media-body h4 {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   padding-bottom: 25px;
 }
 
-.blog_author .media .media-body h4 span {
+.intro_author .media .media-body h4 span {
   color: #7c8d93;
 }
 
-.blog_author .media .media-body p {
+.intro_author .media .media-body p {
   font-size: 15px;
   line-height: 28px;
   color: #7c8d93;
@@ -2105,7 +2105,7 @@ i:before {
   font-weight: 500;
 }
 
-.blog_comment h3 {
+.intro_comment h3 {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -2114,18 +2114,18 @@ i:before {
   padding-top: 80px;
 }
 
-.blog_comment .media {
+.intro_comment .media {
   margin-bottom: 35px;
 }
 
-.blog_comment .media .d-flex {
+.intro_comment .media .d-flex {
   display: block !important;
   padding: 0px 0px 0px 25px;
   max-width: 144px;
   width: 100%;
 }
 
-.blog_comment .media .d-flex h4 {
+.intro_comment .media .d-flex h4 {
   color: #0b1033;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -2134,7 +2134,7 @@ i:before {
   padding-bottom: 6px;
 }
 
-.blog_comment .media .d-flex h5 {
+.intro_comment .media .d-flex h5 {
   color: #7c8d93;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -2142,11 +2142,11 @@ i:before {
   display: block;
 }
 
-.blog_comment .media .media-body {
+.intro_comment .media .media-body {
   padding-left: 20px;
 }
 
-.blog_comment .media .media-body p {
+.intro_comment .media .media-body p {
   color: #7c8d93;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -2155,22 +2155,22 @@ i:before {
   padding-bottom: 15px;
 }
 
-.blog_comment .media .media-body a {
+.intro_comment .media .media-body a {
   color: #0b1033;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 12px;
 }
 
-.blog_comment .media:last-child {
+.intro_comment .media:last-child {
   margin-bottom: 0px;
 }
 
-.blog_comment_form {
+.intro_comment_form {
   max-width: 560px;
 }
 
-.blog_comment_form h3 {
+.intro_comment_form h3 {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -2178,19 +2178,19 @@ i:before {
   padding: 75px 0px 55px 0px;
 }
 
-.blog_comment_form .contact_us_form {
+.intro_comment_form .contact_us_form {
   margin-top: 0px;
 }
 
-.blog_comment_form .contact_us_form .form-group input {
+.intro_comment_form .contact_us_form .form-group input {
   height: 55px;
 }
 
-.blog_comment_form .contact_us_form .form-group:last-child {
+.intro_comment_form .contact_us_form .form-group:last-child {
   margin-bottom: 0px;
 }
 
-/* End Blog Main Area css
+/* End intro Main Area css
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/

@@ -4,6 +4,19 @@
   margin-right: 8.33333333%;
 }
 
+.table {
+  margin-bottom: 100px;
+}
+
+th, td {
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+td {
+  color: #7c8d93;
+}
+
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 ul {

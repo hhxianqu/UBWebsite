@@ -1,33 +1,33 @@
 <template>
-  <div id="app">
-    <customMenu></customMenu>
-    <router-view/>
+  <div>
+    <div id="app">
+      <customMenu class="menu"></customMenu>
+      <frameHeader>
+      </frameHeader>
+    </div>
   </div>
 </template>
 
 <script>
 import customMenu from '@/components/menu'
+import FrameHeader from '@/components/Header'
 
 export default {
   name: 'App',
   components: {
-    customMenu: customMenu
+    customMenu: customMenu,
+    frameHeader: FrameHeader
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-flow: row;
 }
 
-.header-contact {
-  height: 50px;
-  background-color: gainsboro;
-  margin: 0;
+.el-menu--collapse{
+  width: 10vw;
 }
 </style>

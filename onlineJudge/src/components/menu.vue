@@ -1,8 +1,6 @@
 <template>
   <div class="header">
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-    active-text-color="#42b983">
-        <el-menu-item><img :src="imgURL"/></el-menu-item>
+    <el-menu :default-active="activeIndex" class="el-menu-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
         <el-menu-item index="1">首页</el-menu-item>
         <el-submenu index="2">
             <template slot="title">课程</template>
@@ -27,7 +25,8 @@ export default {
   data () {
     return {
       activeIndex: '1',
-      imgURL: require('../assets/logo.png')
+      imgURL: require('../assets/logo.png'),
+      isCollapse: true
     }
   },
   methods: {
@@ -51,7 +50,10 @@ export default {
         }
         this.activeIndex = key
       }
-    }
+    },
+    handleOpen () {
+    },
+    handleClose () {}
   }
 }
 </script>

@@ -1,35 +1,16 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <ul>
-      <li v-for="(item, i) in typeList" v-bind:key="i">
-        <type :title='item.title' :content='item.content'></type>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
-import type from '@/components/type'
 
 export default {
   name: 'Home',
-  components: {
-    type: type
-  },
   data () {
     return {
-      msg: 'Welcome !',
-      typeList: [
-        {
-          title: 'IGCSE',
-          content: '全新真题'
-        },
-        {
-          title: 'Alevel',
-          content: '全新真题'
-        }
-      ]
+      msg: 'Welcome !'
     }
   }
 }

@@ -1,23 +1,15 @@
 <template>
   <div>
     <div id="app">
-      <customMenu class="menu"></customMenu>
-      <frameHeader>
-      </frameHeader>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import customMenu from '@/components/menu'
-import FrameHeader from '@/components/Header'
 
 export default {
-  name: 'App',
-  components: {
-    customMenu: customMenu,
-    frameHeader: FrameHeader
-  }
+  name: 'App'
 }
 </script>
 
@@ -25,9 +17,5 @@ export default {
 #app {
   display: flex;
   flex-flow: row;
-}
-
-.el-menu--collapse{
-  width: 10vw;
 }
 </style>

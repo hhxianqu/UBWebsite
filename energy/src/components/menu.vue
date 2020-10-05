@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    handleSelect (key, keyPath) {
+    handleSelect (key) {
       if (key !== this.activeIndex) {
         switch (key) {
           case '1' :

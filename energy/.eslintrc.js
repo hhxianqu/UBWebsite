@@ -50,25 +50,14 @@ module.exports = {
     "brace-style": [2, "1tbs", {
       "allowSingleLine": false
     }], //大括号风格
-    "key-spacing": [2, {
-      "beforeColon": false,
-      "afterColon": true
-    }], //对象字面量中冒号的前后空格
     "new-cap": [2, {
       "newIsCap": true,
       "capIsNew": false
     }], //构造函数名字首字母要大写
     "new-parens": 2, //new时构造函数必须有小括号
     "no-mixed-spaces-and-tabs": [2, "smart-tabs"], //不允许混用tab和空格
-    "fun-call-spacing": 2, //函数调用时，函数名与()之间不能有空格
     "no-trailing-spaces": 2, //一行最后不允许有空格
     "operator-assignment": 0, //赋值运算符的风格
-    "padded-blocks": [2, "never"], //块内行首行尾是否空行
-    "space-before-blocks": [2, "always"], //块前的空格
-    "space-before-function-paren": [2, {
-      "anonymous": "always",
-      "named": "never"
-    }], //函数定义时括号前的空格
     "space-infix-ops": [2, {
       "int32Hint": true
     }], //操作符周围的空格

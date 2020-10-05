@@ -7,18 +7,23 @@
       <el-form-item label="密码">
         <el-input v-model="form.password" placeholder="密码/Password" show-password />
       </el-form-item>
-      <el-button>登陆Login</el-button>
+      <el-button @click="login">登陆Login</el-button>
     </el-form>
   </div>
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       form: {
         username: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    login () {
+      this.$router.push('/Home')
     }
   }
 }

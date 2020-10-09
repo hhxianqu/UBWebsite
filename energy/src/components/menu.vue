@@ -1,20 +1,14 @@
 <template>
   <div class="header">
-    <el-menu :default-active="activeIndex" class="el-menu-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" @open="handleOpen" @close="handleClose">
         <el-menu-item index="1">首页</el-menu-item>
         <el-submenu index="2">
-            <template slot="title">课程</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="2-4-1">选项1</el-menu-item>
-            <el-menu-item index="2-4-2">选项2</el-menu-item>
-            <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
+            <template slot="title">系统设置</template>
+            <el-menu-item >系统配置</el-menu-item>
+            <el-menu-item @click="()=>{this.$router.push('/user-info')}">用户管理</el-menu-item>
+            <el-menu-item @click="()=>{this.$router.push('/manage-role')}">角色管理</el-menu-item>
+            <el-menu-item >权限管理</el-menu-item>
         </el-submenu>
-        <el-menu-item index="3">关于我们</el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -30,26 +24,7 @@ export default {
     }
   },
   methods: {
-    handleSelect (key) {
-      if (key !== this.activeIndex) {
-        switch (key) {
-          case '1' :
-            this.$router.push('/')
-            break
-          case '2' :
-            this.$router.push('/')
-            break
-          case '3' :
-            this.$router.push('/')
-            break
-          case '4' :
-            this.$router.push('/personalCenter')
-            break
-          default :
-            break
-        }
-        this.activeIndex = key
-      }
+    handleSelect () {
     },
     handleOpen () {
     },
@@ -59,5 +34,7 @@ export default {
 </script>
 
 <style scoped>
-
+.el-menu-demo {
+  width: 15vw;
+}
 </style>

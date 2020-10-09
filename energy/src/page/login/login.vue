@@ -3,10 +3,14 @@
     <div class="login-contain">
       <h4 class="login-title">账号登录</h4>
       <el-form ref="form" :model="form" label-width="0px">
-        <el-form-item>
+        <el-form-item prop="username" :rules="[
+          { required: true, message: '用户名不能为空'},
+        ]">
           <el-input v-model="form.username" placeholder="用户名/User Name" class="login-input"/>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="password" :rules="[
+          { required: true, message: '密码不能为空'},
+        ]">
           <el-input v-model="form.password" placeholder="密码/Password" show-password class="login-input"/>
         </el-form-item>
         <el-button @click="login" class="login-btn">登陆Login</el-button>
@@ -26,7 +30,13 @@ export default {
   },
   methods: {
     login () {
-      this.$router.push('/Home')
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          this.$router.push('/Home')
+        } else {
+          console.log('error submit!!')
+        }
+      })
     }
   }
 }

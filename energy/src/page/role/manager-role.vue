@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <section>
       <el-button @click="addRole">添加</el-button>
       <el-button @click="changeRole">编辑</el-button>
       <el-button @click="deleteRole">删除</el-button>
@@ -18,7 +18,7 @@
           </el-table-column>
         </el-table>
       </div>
-    </div>
+    </section>
 </template>
 
 <script>

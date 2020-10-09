@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <section>
         <el-form ref="form" :model="form" label-width="100px">
       <el-form-item label="登陆账号">
         <el-input v-model="form.loginAccount" placeholder="登陆账号" />
@@ -19,7 +19,7 @@
       <el-button @click="save">保存</el-button>
       <el-button @click="back">返回</el-button>
     </el-form>
-    </div>
+    </section>
 </template>
 
 <script>

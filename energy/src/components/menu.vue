@@ -1,16 +1,23 @@
 <template>
-  <div class="header">
-    <el-menu :default-active="activeIndex" class="el-menu-demo" @open="handleOpen" @close="handleClose">
-        <el-menu-item index="1">首页</el-menu-item>
-        <el-submenu index="2">
-            <template slot="title">系统设置</template>
-            <el-menu-item >系统配置</el-menu-item>
-            <el-menu-item @click="()=>{this.$router.push('/user-info')}">用户管理</el-menu-item>
-            <el-menu-item @click="()=>{this.$router.push('/manage-role')}">角色管理</el-menu-item>
-            <el-menu-item >权限管理</el-menu-item>
-        </el-submenu>
-    </el-menu>
-  </div>
+  <el-row class="main">
+    <el-col :span="4">
+      <el-menu :default-active="this.$router.path" router background-color="#4981BC" text-color="white" active-text-color="white" class="el-menu-demo" @open="handleOpen" @close="handleClose">
+          <div class="title">供配电云平台</div>
+          <el-submenu index="/">
+              <template slot="title">系统配置</template>
+              <el-menu-item index="/user-info">用户管理</el-menu-item>
+              <el-menu-item index="/manage-role">角色管理</el-menu-item>
+              <!-- <el-menu-item >权限管理</el-menu-item> -->
+          </el-submenu>
+          <el-menu-item index="/home">供配电管理</el-menu-item>
+      </el-menu>
+    </el-col>
+    <el-col :span="20">
+      <el-main>
+        <router-view />
+      </el-main>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -34,7 +41,18 @@ export default {
 </script>
 
 <style scoped>
+.main{
+  width: 100vw;
+}
 .el-menu-demo {
-  width: 15vw;
+  height: 100vh;
+  font-weight: 200;
+}
+.title{
+  font-size: 20px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 48px;
+  text-align: center;
 }
 </style>

@@ -1,18 +1,15 @@
 <template>
   <div class="contain">
     <customMenu class="menu" />
-    <frameHeader />
   </div>
 </template>
 
 <script>
 import customMenu from '@/components/menu'
-import FrameHeader from '@/components/Header'
 
 export default {
   components: {
-    customMenu: customMenu,
-    frameHeader: FrameHeader
+    customMenu: customMenu
   }
 }
 </script>

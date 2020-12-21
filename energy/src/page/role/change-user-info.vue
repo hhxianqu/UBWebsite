@@ -1,29 +1,40 @@
 <template>
-    <section>
+    <el-dialog
+      title="添加用户"
+      :visible.sync="userDialogVisible"
+      width="30%"
+      :before-close="close">
         <el-form ref="form" :model="form" label-width="100px">
-      <el-form-item label="登陆账号">
-        <el-input v-model="form.loginAccount" placeholder="登陆账号" />
+      <el-form-item label="用户名称：">
+        <el-input v-model="form.loginAccount" placeholder="用户名称：" />
       </el-form-item>
-      <el-form-item label="姓名">
-        <el-input v-model="form.name" placeholder="姓名" />
+      <el-form-item label="角色选择：">
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="电话">
-        <el-input v-model="form.phone" placeholder="电话" />
+      <el-form-item label="联系电话：">
+        <el-input v-model="form.phone" placeholder="联系电话：" />
       </el-form-item>
-      <el-form-item label="操作员角色">
-        <el-input v-model="form.managerRole" placeholder="操作员角色" />
+      <el-form-item label="用户备注：">
+        <el-input v-model="form.managerRole" placeholder="用户备注：" />
       </el-form-item>
-      <el-form-item label="备注">
-        <el-input v-model="form.remark" placeholder="备注" />
-      </el-form-item>
-      <el-button @click="save">保存</el-button>
-      <el-button @click="back">返回</el-button>
+      <el-button @click="save" type="primary">保存</el-button>
+      <el-button @click="close">返回</el-button>
     </el-form>
-    </section>
+    </el-dialog>
 </template>
 
 <script>
 export default {
+  props: {
+    userDialogVisible: Boolean
+  },
   data () {
     return {
       form: {
@@ -32,13 +43,17 @@ export default {
         phone: '',
         managerRole: '',
         remark: ''
-      }
+      },
+      options: [{
+        value: '选项1',
+        label: '系统管理员'
+      }]
     }
   },
   methods: {
     save () {},
-    back () {
-      this.$router.replace('/home')
+    close () {
+      this.$emit('closeUserDialog')
     }
   }
 }

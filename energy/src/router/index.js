@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/page/index'
-import ChangeRole from '@/page/role/change-role'
-import ChangeUserInfo from '@/page/role/change-user-info'
+import ManageUser from '@/page/role/manage-user'
 import ManagerRole from '@/page/role/manager-role'
 import Login from '@/page/login/login'
 import LoginManager from '@/page/login/login-manager'
@@ -24,22 +23,19 @@ export default new Router({
     {
       path: '/home',
       name: 'Home',
-      component: Home
-    },
-    {
-      path: '/change-role',
-      name: 'Role Manager',
-      component: ChangeRole
-    },
-    {
-      path: '/user-info',
-      name: 'Role Manager',
-      component: ChangeUserInfo
-    },
-    {
-      path: '/manage-role',
-      name: 'Role Manager',
-      component: ManagerRole
+      component: Home,
+      children: [
+        {
+          path: '/user-info',
+          name: 'Role Manager',
+          component: ManageUser
+        },
+        {
+          path: '/manage-role',
+          name: 'Role Manager',
+          component: ManagerRole
+        }
+      ]
     }
   ]
 })

@@ -13,7 +13,7 @@
       </el-menu>
     </el-col>
     <el-col :span="20">
-      <tabs />
+      <!-- <tabs /> -->
       <el-main>
         <router-view />
       </el-main>
@@ -25,7 +25,7 @@
 import Tabs from '@/components/tabs'
 export default {
   name: 'customMenu',
-  props: {
+  components: {
     Tabs: Tabs
   },
   data () {

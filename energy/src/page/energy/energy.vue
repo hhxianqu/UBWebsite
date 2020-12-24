@@ -4,22 +4,18 @@
       <el-input v-model="input" placeholder="南大供电图书馆2楼"/>
       <button class="search">切换</button>
     </div>
-    <div class="energy-card">
-      <span class="title">用电概况</span>
-      <el-radio-group v-model="radio1" size="small">
-        <el-radio-button label="日"></el-radio-button>
-        <el-radio-button label="月"></el-radio-button>
-        <el-radio-button label="年"></el-radio-button>
-      </el-radio-group>
-      <div class="power">实时功率</div>
-      <div class="power">历史累计</div>
-      <div class="power">昨日累计</div>
+    <div class="energy-card info-card">
+      <en-info />
     </div>
     <div class="energy-card"></div>
   </div>
 </template>
 <script>
+import EnInfo from '@/page/energy/en-info'
 export default {
+  components: {
+    EnInfo: EnInfo
+  },
   data () {
     return {
       input: '',
@@ -33,13 +29,6 @@ export default {
 <style scoped>
 .background {
   background-color: #1D3C5D;
-}
-.title {
-  font-size: 8px;
-  font-family: Microsoft YaHei;
-  font-weight: 300;
-  color: #FFFFFF;
-  line-height: 24px;
 }
 .search {
   width: 75px;
@@ -60,12 +49,9 @@ el-input__inner {
 .energy-card {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 13px;
+  margin: 10px;
 }
-.power {
-  font-size: 12px;
-  font-family: Microsoft YaHei;
-  font-weight: 300;
-  color: #88C1FC;
-  line-height: 24px;
+.info-card {
+  width:30vw;
 }
 </style>

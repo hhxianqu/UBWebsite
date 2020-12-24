@@ -4,15 +4,16 @@
       <el-button @click="changeRole" type="success">保存</el-button>
       <el-button @click="deleteRole" type="danger">清空</el-button>
       <el-row>
+        <el-col :span="18">
         <h4>角色列表</h4>
-        <el-table >
+        <el-table>
           <el-table-column
             prop="roleName"
             label="编号"
-            width="180">
+            width="60">
           </el-table-column>
           <el-table-column
-            prop="discribe"
+            prop="roleList"
             label="角色列表"
             width="180">
           </el-table-column>
@@ -37,8 +38,8 @@
             </template>
           </el-table-column>
         </el-table>
-        </el-row>
-        <el-row>
+        </el-col>
+        <el-col :span="6">
           <h4>权限列表</h4>
           <el-tree
             :props="props"
@@ -47,7 +48,9 @@
             show-checkbox
             @check-change="handleCheckChange">
           </el-tree>
+        </el-col>
         </el-row>
+
       <change-role :roleDialogVisible="roleDialogVisible" @closeRoleDialog="closeRoleDialog"/>
     </section>
 </template>

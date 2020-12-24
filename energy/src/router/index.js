@@ -5,6 +5,7 @@ import ManageUser from '@/page/role/manage-user'
 import ManagerRole from '@/page/role/manager-role'
 import Login from '@/page/login/login'
 import LoginManager from '@/page/login/login-manager'
+import Energy from '@/page/energy/energy'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
           path: '/manage-role',
           name: 'Role Manager',
           component: ManagerRole
+        },
+        {
+          path: '/energy',
+          name: 'Energy',
+          component: Energy
         }
       ]
     }

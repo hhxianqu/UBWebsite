@@ -9,10 +9,11 @@
               <el-menu-item index="/manage-role">角色管理</el-menu-item>
               <!-- <el-menu-item >权限管理</el-menu-item> -->
           </el-submenu>
-          <el-menu-item index="/home">供配电管理</el-menu-item>
+          <el-menu-item index="/energy">供配电管理</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20">
+      <tabs />
       <el-main>
         <router-view />
       </el-main>
@@ -21,8 +22,12 @@
 </template>
 
 <script>
+import Tabs from '@/components/tabs'
 export default {
   name: 'customMenu',
+  props: {
+    Tabs: Tabs
+  },
   data () {
     return {
       activeIndex: '1',

@@ -6,7 +6,7 @@
       <el-row>
         <el-col :span="18">
         <h4>角色列表</h4>
-        <el-table>
+        <el-table :data="tableData">
           <el-table-column
             prop="roleName"
             label="编号"
@@ -57,6 +57,7 @@
 
 <script>
 import ChangeRole from '@/page/role/change-role'
+import axios from 'axios'
 export default {
   components: {
     ChangeRole: ChangeRole
@@ -71,8 +72,12 @@ export default {
       props: {
         label: 'name',
         children: 'zones'
-      }
+      },
+      tableData: []
     }
+  },
+  mounted () {
+    this.getRole(1)
   },
   methods: {
     addRole () {
@@ -114,6 +119,36 @@ export default {
 
         resolve(data)
       }, 500)
+    },
+    getRole (page) {
+      this.tableData = []
+      // const that = this
+      axios({
+        method: 'post',
+        url: '/system/role/getAllRoles',
+        data: {
+          page: page,
+          limit: 10
+        }
+      }).then(function (res) {
+        console.log(res.data)
+        if (res.data.code === 200) {
+          // const data = res.data.data
+          // data.forEach(each => {
+          //   const eachTableData = {}
+          //   const role = each.roles.map(element => {
+          //     return element.nameZh
+          //   }).join(', ')
+          //   eachTableData.role = role
+          //   eachTableData.phone = each.phone
+          //   eachTableData.id = each.id
+          //   eachTableData.username = each.username
+          //   eachTableData.enabled = each.enabled ? '启用' : '禁用'
+          //   eachTableData.discribe = '-'
+          //   that.tableData.push(eachTableData)
+          // })
+        }
+      })
     }
   }
 }

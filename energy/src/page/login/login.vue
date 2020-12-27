@@ -20,6 +20,7 @@
 </template>
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -31,20 +32,32 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     login () {
-      // var that = this
+      const that = this
       this.$refs['form'].validate((valid) => {
         if (valid) {
           axios({
             method: 'post',
-            url: '/api/login',
+            url: '/login',
             data: {
               username: this.form.username,
               password: this.form.password
             }
           }).then(function (res) {
-            console.log(res.data)
-            // that.$router.push('/Home/energy')
+            if (res.data.code === 200) {
+              that.$message({
+                message: res.data.message,
+                type: 'success'
+              })
+              const token = res.data.data
+              that.changeLogin({Authorization: token})
+              that.$router.push('/energy')
+            } else {
+              that.$message.error(res.data.message)
+            }
+          }).catch(error => {
+            console.log(error)
           })
         } else {
           console.log('error submit!!')

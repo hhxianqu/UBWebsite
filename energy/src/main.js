@@ -25,12 +25,11 @@ new Vue({
 // 异步请求前在header里加入token
 axios.interceptors.request.use(
   config => {
-    if (config.url === '/api/login') { // 如果是登录和注册操作，则不需要携带header里面的token
+    if (config.url === '/login') { // 如果是登录和注册操作，则不需要携带header里面的token
     } else {
-      config.headers['Authorization'] = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiJ9.J2srGwhg7um8WnQSxqdCdi_tf9ebZF18R17sMDkmm1yGEe3zDy9PpzTmD0kMgHsxCHGI8ckoBkD-Mqxd4cnYkA'
-      // if (localStorage.getItem('Authorization')) {
-      //   config.headers.Authorizatior = localStorage.getItem('Authorization')
-      // }
+      if (localStorage.getItem('Authorization')) {
+        config.headers.Authorization = localStorage.getItem('Authorization')
+      }
     }
     return config
   },
@@ -57,8 +56,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/') {
     next()
   } else {
-    // let token = localStorage.getItem('Authorization')
-    let token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiJ9.J2srGwhg7um8WnQSxqdCdi_tf9ebZF18R17sMDkmm1yGEe3zDy9PpzTmD0kMgHsxCHGI8ckoBkD - Mqxd4cnYkA'
+    let token = localStorage.getItem('Authorization')
     if (token === 'null' || token === '') {
       next('/')
     } else {

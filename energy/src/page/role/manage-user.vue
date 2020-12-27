@@ -5,11 +5,10 @@
       <el-button @click="deleteUser" type="danger">清空</el-button>
       <div>
         <h4>用户列表</h4>
-        <el-table >
+        <el-table :data="tableData">
           <el-table-column
             prop="id"
             label="编号"
-            :data="tableData"
             width="60">
           </el-table-column>
           <el-table-column
@@ -18,12 +17,12 @@
             width="160">
           </el-table-column>
           <el-table-column
-            prop="discribe"
+            prop="role"
             label="角色"
             width="160">
           </el-table-column>
           <el-table-column
-            prop="discribe"
+            prop="enabled"
             label="状态"
             width="160">
           </el-table-column>
@@ -52,7 +51,7 @@
           :current-page.sync="currentPage"
           :page-size="10"
           layout="prev, pager, next, jumper"
-          :total="100">
+          :total="2">
         </el-pagination>
       </div>
       <change-user :userDialogVisible="userDialogVisible" @closeUserDialog="closeUserDialog"/>
@@ -73,7 +72,7 @@ export default {
         pwdAgain: ''
       },
       userDialogVisible: false,
-      tableData: {},
+      tableData: [],
       currentPage: 1
     }
   },
@@ -91,16 +90,33 @@ export default {
     deleteUser () {},
     handleClick () {},
     getUser (page) {
+      this.tableData = []
+      const that = this
       axios({
         method: 'post',
-        url: '/api/system/user/getAllUserWithRoles',
+        url: '/system/user/getAllUserWithRoles',
         data: {
           page: page,
           limit: 10
         }
       }).then(function (res) {
         console.log(res.data)
-        // that.$router.push('/Home/energy')
+        if (res.data.code === 200) {
+          const data = res.data.data
+          data.forEach(each => {
+            const eachTableData = {}
+            const role = each.roles.map(element => {
+              return element.nameZh
+            }).join(', ')
+            eachTableData.role = role
+            eachTableData.phone = each.phone
+            eachTableData.id = each.id
+            eachTableData.username = each.username
+            eachTableData.enabled = each.enabled ? '启用' : '禁用'
+            eachTableData.discribe = '-'
+            that.tableData.push(eachTableData)
+          })
+        }
       })
     },
     handleCurrentChange (val) {

@@ -41,8 +41,9 @@
             width="160">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
-              <el-button type="text" size="small">禁用</el-button>
-              <el-button type="text" size="small">删除</el-button>
+              <el-button type="text" size="small">{{scope.row.enabled === '禁用' ? "启用" : '禁用'}}</el-button>
+              <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
+              <el-button type="text" size="small">重置密码</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -89,6 +90,17 @@ export default {
     changeUser () {},
     deleteUser () {},
     handleClick () {},
+    handleDelete (id) {
+      axios({
+        method: 'post',
+        url: '/system/role/deleteUser',
+        data: {
+          id: id
+        }
+      }).then(function (res) {
+        console.log(res)
+      })
+    },
     getUser (page) {
       this.tableData = []
       const that = this

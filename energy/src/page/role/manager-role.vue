@@ -34,7 +34,7 @@
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
               <el-button type="text" size="small">禁用</el-button>
-              <el-button type="text" size="small">删除</el-button>
+              <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -89,6 +89,17 @@ export default {
     changeRole () {},
     deleteRole () {},
     handleClick () {},
+    handleDelete (id) {
+      axios({
+        method: 'post',
+        url: '/system/role/deleteRole',
+        data: {
+          id: id
+        }
+      }).then(function (res) {
+        console.log(res)
+      })
+    },
     handleCheckChange () {},
     loadNode (node, resolve) {
       if (node.level === 0) {

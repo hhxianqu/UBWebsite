@@ -19,10 +19,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="联系电话：">
-            <el-input v-model="form.phone" placeholder="联系电话：" />
+            <el-input v-model="form.phone" placeholder="联系电话" />
           </el-form-item>
           <el-form-item label="用户备注：">
-            <el-input v-model="form.managerRole" placeholder="用户备注：" />
+            <el-input v-model="form.managerRole" placeholder="用户备注" />
           </el-form-item>
           <el-button @click="save" type="primary">保存</el-button>
           <el-button @click="close">返回</el-button>
@@ -47,7 +47,8 @@ export default {
       options: [{
         value: '选项1',
         label: '系统管理员'
-      }]
+      }],
+      value: '选项1'
     }
   },
   methods: {

@@ -2,7 +2,7 @@
   <div>
     <div class="card-header">
       <span class="title">用电概况</span>
-      <el-radio-group v-model="radio1" size="small" change="changeTime" fill="#4981BC">
+      <el-radio-group v-model="radio" size="small" change="changeTime" fill="#4981BC">
         <el-radio-button label="日"></el-radio-button>
         <el-radio-button label="月"></el-radio-button>
         <el-radio-button label="年"></el-radio-button>
@@ -26,7 +26,7 @@
 export default {
   data () {
     return {
-      radio1: '日'
+      radio: '日'
     }
   },
   methods: {
@@ -53,6 +53,9 @@ export default {
   display: flex;
   flex: row;
   justify-content: space-between;
+  border: 1px solid #4981BC;
+  padding: 12px;
+  margin-top: 10px;
 }
 .card-header {
   display: flex;

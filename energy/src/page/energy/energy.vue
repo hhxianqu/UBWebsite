@@ -4,17 +4,37 @@
       <el-input v-model="input" placeholder="南大供电图书馆2楼"/>
       <button class="search">切换</button>
     </div>
-    <div class="energy-card info-card">
-      <en-info />
-    </div>
-    <div class="energy-card"></div>
+    <el-row>
+      <el-col :span="10">
+        <div class="energy-card">
+          <en-info />
+        </div>
+        <div class="energy-card">
+          <piechart />
+        </div>
+      </el-col>
+      <el-col :span="14">
+        <div  class="energy-card">
+          <daily-elec />
+        </div>
+        <div  class="energy-card">
+          <en-history />
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
 import EnInfo from '@/page/energy/en-info'
+import Piechart from '@/page/energy/piechart'
+import DailyElec from '@/page/energy/daily-elec'
+import EnHistory from '@/page/energy/en-history'
 export default {
   components: {
-    EnInfo: EnInfo
+    EnInfo: EnInfo,
+    Piechart: Piechart,
+    DailyElec: DailyElec,
+    EnHistory: EnHistory
   },
   data () {
     return {
@@ -29,6 +49,7 @@ export default {
 <style scoped>
 .background {
   background-color: #1D3C5D;
+  padding: 10px;
 }
 .search {
   width: 75px;
@@ -50,8 +71,5 @@ el-input__inner {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 13px;
   margin: 10px;
-}
-.info-card {
-  width:30vw;
 }
 </style>

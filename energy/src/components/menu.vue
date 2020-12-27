@@ -13,6 +13,9 @@
       </el-menu>
     </el-col>
     <el-col :span="20">
+      <div class="main-header">
+        <el-button type="text" icon="el-icon-switch-button" class="logout" @click="logout">退出</el-button>
+      </div>
       <!-- <tabs /> -->
       <el-main>
         <router-view />
@@ -40,7 +43,10 @@ export default {
     },
     handleOpen () {
     },
-    handleClose () {}
+    handleClose () {},
+    logout () {
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -59,5 +65,16 @@ export default {
   color: #FFFFFF;
   line-height: 48px;
   text-align: center;
+}
+.main-header {
+  height: 8vh;
+  background: #2B5D91;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.logout {
+  color: #FFFFFF;
+  margin-right: 2vw;
 }
 </style>

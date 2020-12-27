@@ -32,7 +32,7 @@ export default {
     login () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.$router.push('/Home')
+          this.$router.push('/Home/energy')
         } else {
           console.log('error submit!!')
         }

@@ -19,6 +19,8 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -30,9 +32,20 @@ export default {
   },
   methods: {
     login () {
+      // var that = this
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.$router.push('/Home/energy')
+          axios({
+            method: 'post',
+            url: '/api/login',
+            data: {
+              username: this.form.username,
+              password: this.form.password
+            }
+          }).then(function (res) {
+            console.log(res.data)
+            // that.$router.push('/Home/energy')
+          })
         } else {
           console.log('error submit!!')
         }

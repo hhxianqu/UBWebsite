@@ -7,12 +7,13 @@
         <h4>用户列表</h4>
         <el-table >
           <el-table-column
-            prop="roleName"
+            prop="id"
             label="编号"
+            :data="tableData"
             width="60">
           </el-table-column>
           <el-table-column
-            prop="discribe"
+            prop="username"
             label="用户名称"
             width="160">
           </el-table-column>
@@ -27,7 +28,7 @@
             width="160">
           </el-table-column>
           <el-table-column
-            prop="discribe"
+            prop="phone"
             label="联系电话"
             width="160">
           </el-table-column>
@@ -37,7 +38,6 @@
             width="160">
           </el-table-column>
           <el-table-column
-            prop="discribe"
             label="操作"
             width="160">
             <template slot-scope="scope">
@@ -47,6 +47,13 @@
             </template>
           </el-table-column>
         </el-table>
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage"
+          :page-size="10"
+          layout="prev, pager, next, jumper"
+          :total="100">
+        </el-pagination>
       </div>
       <change-user :userDialogVisible="userDialogVisible" @closeUserDialog="closeUserDialog"/>
     </section>
@@ -54,6 +61,7 @@
 
 <script>
 import ChangeUser from '@/page/role/change-user-info'
+import axios from 'axios'
 export default {
   components: {
     ChangeUser: ChangeUser
@@ -64,8 +72,13 @@ export default {
         newPwd: '',
         pwdAgain: ''
       },
-      userDialogVisible: false
+      userDialogVisible: false,
+      tableData: {},
+      currentPage: 1
     }
+  },
+  mounted () {
+    this.getUser(1)
   },
   methods: {
     addUser () {
@@ -76,7 +89,23 @@ export default {
     },
     changeUser () {},
     deleteUser () {},
-    handleClick () {}
+    handleClick () {},
+    getUser (page) {
+      axios({
+        method: 'post',
+        url: '/api/system/user/getAllUserWithRoles',
+        data: {
+          page: page,
+          limit: 10
+        }
+      }).then(function (res) {
+        console.log(res.data)
+        // that.$router.push('/Home/energy')
+      })
+    },
+    handleCurrentChange (val) {
+      this.getUser(val)
+    }
   }
 }
 </script>

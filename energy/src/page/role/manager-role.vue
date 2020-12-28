@@ -8,17 +8,17 @@
         <h4>角色列表</h4>
         <el-table :data="tableData">
           <el-table-column
-            prop="roleName"
+            prop="id"
             label="编号"
             width="60">
           </el-table-column>
           <el-table-column
-            prop="roleList"
+            prop="roleName"
             label="角色列表"
             width="180">
           </el-table-column>
           <el-table-column
-            prop="discribe"
+            prop="enabled"
             label="状态"
             width="180">
           </el-table-column>
@@ -28,7 +28,6 @@
             width="180">
           </el-table-column>
           <el-table-column
-            prop="discribe"
             label="操作"
             width="180">
             <template slot-scope="scope">
@@ -77,7 +76,7 @@ export default {
     }
   },
   mounted () {
-    this.getRole(1)
+    this.getRole()
   },
   methods: {
     addRole () {
@@ -131,33 +130,24 @@ export default {
         resolve(data)
       }, 500)
     },
-    getRole (page) {
+    getRole () {
       this.tableData = []
-      // const that = this
+      const that = this
       axios({
         method: 'post',
-        url: '/system/role/getAllRoles',
-        data: {
-          page: page,
-          limit: 10
-        }
+        url: '/system/role/getAllRoles'
       }).then(function (res) {
         console.log(res.data)
         if (res.data.code === 200) {
-          // const data = res.data.data
-          // data.forEach(each => {
-          //   const eachTableData = {}
-          //   const role = each.roles.map(element => {
-          //     return element.nameZh
-          //   }).join(', ')
-          //   eachTableData.role = role
-          //   eachTableData.phone = each.phone
-          //   eachTableData.id = each.id
-          //   eachTableData.username = each.username
-          //   eachTableData.enabled = each.enabled ? '启用' : '禁用'
-          //   eachTableData.discribe = '-'
-          //   that.tableData.push(eachTableData)
-          // })
+          const data = res.data.data
+          data.forEach(each => {
+            const eachTableData = {}
+            eachTableData.id = each.id
+            eachTableData.roleName = each.nameZh
+            eachTableData.enabled = '启用'
+            eachTableData.discribe = '-'
+            that.tableData.push(eachTableData)
+          })
         }
       })
     }

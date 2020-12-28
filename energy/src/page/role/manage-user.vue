@@ -24,7 +24,7 @@
           <el-table-column
             prop="enabled"
             label="状态"
-            width="160">
+            width="120">
           </el-table-column>
           <el-table-column
             prop="phone"
@@ -38,7 +38,7 @@
           </el-table-column>
           <el-table-column
             label="操作"
-            width="160">
+            width="200">
             <template slot-scope="scope">
               <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
               <el-button type="text" size="small">{{scope.row.enabled === '禁用' ? "启用" : '禁用'}}</el-button>
@@ -50,9 +50,9 @@
         <el-pagination
           @current-change="handleCurrentChange"
           :current-page.sync="currentPage"
-          :page-size="10"
-          layout="prev, pager, next, jumper"
-          :total="2">
+          :page-size="limit"
+          layout="total, prev, pager, next, jumper"
+          :total="total">
         </el-pagination>
       </div>
       <change-user :userDialogVisible="userDialogVisible" @closeUserDialog="closeUserDialog"/>
@@ -74,7 +74,9 @@ export default {
       },
       userDialogVisible: false,
       tableData: [],
-      currentPage: 1
+      currentPage: 1,
+      total: 0,
+      limit: 10
     }
   },
   mounted () {
@@ -86,19 +88,24 @@ export default {
     },
     closeUserDialog () {
       this.userDialogVisible = false
+      this.getUser(this.currentPage)
     },
     changeUser () {},
     deleteUser () {},
     handleClick () {},
     handleDelete (id) {
+      const that = this
       axios({
         method: 'post',
-        url: '/system/role/deleteUser',
+        url: '/system/user/deleteUser',
         data: {
           id: id
         }
       }).then(function (res) {
-        console.log(res)
+        const data = res.data
+        if (data.code === 200) {
+          that.getUser(that.currentPage)
+        }
       })
     },
     getUser (page) {
@@ -109,13 +116,14 @@ export default {
         url: '/system/user/getAllUserWithRoles',
         data: {
           page: page,
-          limit: 10
+          limit: that.limit
         }
       }).then(function (res) {
         console.log(res.data)
         if (res.data.code === 200) {
           const data = res.data.data
-          data.forEach(each => {
+          that.total = data.total
+          data.data.forEach(each => {
             const eachTableData = {}
             const role = each.roles.map(element => {
               return element.nameZh
@@ -125,7 +133,7 @@ export default {
             eachTableData.id = each.id
             eachTableData.username = each.username
             eachTableData.enabled = each.enabled ? '启用' : '禁用'
-            eachTableData.discribe = '-'
+            eachTableData.discribe = each.remark
             that.tableData.push(eachTableData)
           })
         }

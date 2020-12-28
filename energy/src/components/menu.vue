@@ -1,6 +1,6 @@
 <template>
   <el-row class="main">
-    <el-col :span="4">
+    <el-col :span="4" style="height: 100%; background-color:#4981BC">
       <el-menu :default-active="this.$router.path" router background-color="#4981BC" text-color="white" active-text-color="white" class="el-menu-demo" @open="handleOpen" @close="handleClose">
           <div class="title">供配电云平台</div>
           <el-submenu index="/">
@@ -54,10 +54,17 @@ export default {
 <style scoped>
 .main{
   width: 100vw;
+  height: 100%;
+  min-height: 100vh;
 }
 .el-menu-demo {
-  height: 100vh;
   font-weight: 200;
+}
+.el-main {
+  padding: 0;
+}
+.el-menu {
+  border-style: none;
 }
 .title{
   font-size: 20px;

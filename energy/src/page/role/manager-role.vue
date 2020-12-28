@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <div class="role-bcg">
       <el-button @click="addRole" type="primary">添加</el-button>
       <el-button @click="changeRole" type="success">保存</el-button>
       <el-button @click="deleteRole" type="danger">清空</el-button>
@@ -37,6 +37,13 @@
             </template>
           </el-table-column>
         </el-table>
+        <el-pagination
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage"
+          :page-size="limit"
+          layout="total, prev, pager, next, jumper"
+          :total="total">
+        </el-pagination>
         </el-col>
         <el-col :span="6">
           <h4>权限列表</h4>
@@ -51,7 +58,7 @@
         </el-row>
 
       <change-role :roleDialogVisible="roleDialogVisible" @closeRoleDialog="closeRoleDialog"/>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -72,11 +79,14 @@ export default {
         label: 'name',
         children: 'zones'
       },
-      tableData: []
+      tableData: [],
+      limit: 10,
+      total: 0,
+      currentPage: 1
     }
   },
   mounted () {
-    this.getRole()
+    this.getRole(1)
   },
   methods: {
     addRole () {
@@ -84,11 +94,13 @@ export default {
     },
     closeRoleDialog () {
       this.roleDialogVisible = false
+      this.getRole(this.currentPage)
     },
     changeRole () {},
     deleteRole () {},
     handleClick () {},
     handleDelete (id) {
+      const that = this
       axios({
         method: 'post',
         url: '/system/role/deleteRole',
@@ -96,7 +108,10 @@ export default {
           id: id
         }
       }).then(function (res) {
-        console.log(res)
+        const data = res.data
+        if (data.code === 200) {
+          that.getRole(that.currentPage)
+        }
       })
     },
     handleCheckChange () {},
@@ -130,17 +145,21 @@ export default {
         resolve(data)
       }, 500)
     },
-    getRole () {
+    getRole (page) {
       this.tableData = []
       const that = this
       axios({
         method: 'post',
-        url: '/system/role/getAllRoles'
+        url: '/system/role/getAllRoles',
+        data: {
+          page: page,
+          limit: that.limit
+        }
       }).then(function (res) {
-        console.log(res.data)
         if (res.data.code === 200) {
           const data = res.data.data
-          data.forEach(each => {
+          that.total = data.total
+          data.data.forEach(each => {
             const eachTableData = {}
             eachTableData.id = each.id
             eachTableData.roleName = each.nameZh
@@ -150,11 +169,17 @@ export default {
           })
         }
       })
+    },
+    handleCurrentChange (val) {
+      this.getRole(val)
     }
   }
 }
 </script>
 
 <style scoped>
-
+.role-bcg {
+  padding-left: 20px;
+  padding-top: 30px;
+}
 </style>

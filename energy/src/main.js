@@ -8,11 +8,14 @@ import axios from 'axios'
 import store from './store/store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import echarts from 'echarts'
+import 'echarts/theme/macarons'
 
-Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.use(ElementUI)
 Vue.use(vuex)
+Vue.prototype.$echarts = echarts
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

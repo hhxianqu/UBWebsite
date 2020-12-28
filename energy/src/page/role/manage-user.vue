@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <div class="user-bcg">
       <el-button @click="addUser" type="primary">添加</el-button>
       <el-button @click="changeUser" type="success">保存</el-button>
       <el-button @click="deleteUser" type="danger">清空</el-button>
@@ -56,7 +56,7 @@
         </el-pagination>
       </div>
       <change-user :userDialogVisible="userDialogVisible" @closeUserDialog="closeUserDialog"/>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -119,7 +119,6 @@ export default {
           limit: that.limit
         }
       }).then(function (res) {
-        console.log(res.data)
         if (res.data.code === 200) {
           const data = res.data.data
           that.total = data.total
@@ -147,5 +146,8 @@ export default {
 </script>
 
 <style scoped>
-
+.user-bcg {
+  padding-left: 20px;
+  padding-top: 30px;
+}
 </style>

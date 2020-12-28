@@ -72,7 +72,6 @@ export default {
         }
       }).then(function (res) {
         const data = res.data
-        console.log(data)
         if (data.code === 200) {
           that.$message({
             message: data.message,
@@ -94,14 +93,13 @@ export default {
         method: 'post',
         url: '/system/role/getAllRoles',
         data: {
-          page: 1,
-          limit: 10
+          page: -1,
+          limit: -1
         }
       }).then(function (res) {
-        console.log(res.data)
         if (res.data.code === 200) {
           const data = res.data.data
-          data.forEach(each => {
+          data.data.forEach(each => {
             const eachTableData = {}
             eachTableData.value = each.id
             eachTableData.label = each.nameZh

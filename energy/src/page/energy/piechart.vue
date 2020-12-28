@@ -10,6 +10,9 @@
         <div class="power-data">84.8KW</div>
       </div>
     </div>
+    <div>
+      <div id="pie" style="width: 400px; height:400px"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -18,7 +21,46 @@ export default {
     return {
     }
   },
+  mounted () {
+    this.drawChart()
+  },
   methods: {
+    drawChart () {
+      const myChart = this.$echarts.init(document.getElementById('pie'), 'macarons')
+      const option = {
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['生产', '办公', '后勤', '其他']
+        },
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+              {value: 125, name: '生产'},
+              {value: 125, name: '办公'},
+              {value: 125, name: '后勤'},
+              {value: 125, name: '其他'}
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      }
+      myChart.setOption(option)
+    }
   }
 }
 </script>

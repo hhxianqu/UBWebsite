@@ -8,6 +8,9 @@
           <el-form-item label="角色名称">
             <el-input v-model="form.roleName" placeholder="角色名称" />
           </el-form-item>
+          <el-form-item label="角色代码">
+            <el-input v-model="form.roleCode" placeholder="角色代码需以“ROLE_”开头" />
+          </el-form-item>
           <el-form-item label="角色描述">
             <el-input v-model="form.roleDescribe" placeholder="角色描述" />
           </el-form-item>
@@ -18,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: {
     roleDialogVisible: Boolean
@@ -26,12 +31,36 @@ export default {
     return {
       form: {
         roleName: '',
-        roleDescribe: ''
+        roleDescribe: '',
+        roleCode: ''
       }
     }
   },
   methods: {
-    save () {},
+    save () {
+      const that = this
+      axios({
+        method: 'post',
+        url: '/system/role/addRole',
+        data: {
+          nameZh: this.form.roleName,
+          remark: this.form.roleDescribe,
+          name: this.form.roleCode
+        }
+      }).then(function (res) {
+        const data = res.data
+        console.log(data)
+        if (data.code === 200) {
+          that.$message({
+            message: data.message,
+            type: 'success'
+          })
+          that.close()
+        } else {
+          that.$message.error(data.message)
+        }
+      })
+    },
     close () {
       this.$emit('closeRoleDialog')
     }

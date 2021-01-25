@@ -1,18 +1,18 @@
 <template>
     <div class="user-bcg">
-      <el-form :inline="true">
+      <el-form :inline="true" ref="form" :model="form">
         <el-form-item label="位置">
-          <el-input placeholder="全部"/>
+          <el-input placeholder="全部" v-model="form.location"/>
         </el-form-item>
         <el-form-item label="类别">
-          <el-select placeholder="全部" />
+          <el-select placeholder="全部" v-model="form.type"/>
         </el-form-item>
         <el-form-item label="动作">
-          <el-select placeholder="全部" />
+          <el-select placeholder="全部" v-model="form.action"/>
         </el-form-item>
         <el-form-item label="时间段">
           <el-date-picker
-            v-model="dateRange"
+            v-model="form.dateRange"
             type="datetimerange"
             range-separator="至"
             start-placeholder="开始日期"
@@ -66,24 +66,26 @@
           :total="total">
         </el-pagination>
       </div>
-      <change-user :userDialogVisible="userDialogVisible" @closeUserDialog="closeUserDialog"/>
+      <detail-dialog :detailDialogVisible="detailDialogVisible" @closeDialog="closeDialog"/>
     </div>
 </template>
 
 <script>
-import ChangeUser from '@/page/role/change-user-info'
+import detailDialog from '@/page/alarm/alarm-detail'
 import axios from 'axios'
 export default {
   components: {
-    ChangeUser: ChangeUser
+    detailDialog: detailDialog
   },
   data () {
     return {
       form: {
         dateRange: '',
-        pwdAgain: ''
+        location: '',
+        action: '',
+        type: ''
       },
-      userDialogVisible: false,
+      detailDialogVisible: false,
       tableData: [],
       currentPage: 1,
       total: 0,
@@ -91,19 +93,18 @@ export default {
     }
   },
   mounted () {
-    this.getUser(1)
+    this.getAlarm(1)
   },
   methods: {
-    addUser () {
-      this.userDialogVisible = true
+    handleClick () {
+      this.detailDialogVisible = true
     },
-    closeUserDialog () {
-      this.userDialogVisible = false
-      this.getUser(this.currentPage)
+    closeDialog () {
+      this.detailDialogVisible = false
+      this.getAlarm(this.currentPage)
     },
     changeUser () {},
     deleteUser () {},
-    handleClick () {},
     handleDelete (id) {
       const that = this
       axios({
@@ -115,11 +116,11 @@ export default {
       }).then(function (res) {
         const data = res.data
         if (data.code === 200) {
-          that.getUser(that.currentPage)
+          that.getAlarm(that.currentPage)
         }
       })
     },
-    getUser (page) {
+    getAlarm (page) {
       this.tableData = []
       const that = this
       axios({
@@ -150,7 +151,7 @@ export default {
       })
     },
     handleCurrentChange (val) {
-      this.getUser(val)
+      this.getAlarm(val)
     }
   }
 }

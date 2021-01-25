@@ -6,6 +6,7 @@ import ManagerRole from '@/page/role/manager-role'
 import Login from '@/page/login/login'
 import LoginManager from '@/page/login/login-manager'
 import Energy from '@/page/energy/energy'
+import Alarm from '@/page/alarm/alarm'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
           path: '/energy',
           name: 'Energy',
           component: Energy
+        },
+        {
+          path: '/alarm',
+          name: 'Alarm',
+          component: Alarm
         }
       ]
     }

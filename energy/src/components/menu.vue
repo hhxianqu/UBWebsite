@@ -10,6 +10,7 @@
               <!-- <el-menu-item >权限管理</el-menu-item> -->
           </el-submenu>
           <el-menu-item index="/energy">供配电管理</el-menu-item>
+          <el-menu-item index="/alarm">事件报警</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20">

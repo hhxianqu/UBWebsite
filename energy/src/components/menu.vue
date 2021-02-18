@@ -1,7 +1,8 @@
 <template>
   <el-row class="main">
     <el-col :span="4" style="height: 100%; background-color:#4981BC">
-      <el-menu :default-active="this.$router.path" router background-color="#4981BC" text-color="white" active-text-color="white" class="el-menu-demo" @open="handleOpen" @close="handleClose">
+      <el-menu :default-active="this.$router.path" router background-color="#4981BC" text-color="white" active-text-color="white"
+            class="el-menu-demo" @open="handleOpen" @close="handleClose">
           <div class="title">供配电云平台</div>
           <el-submenu index="/">
               <template slot="title">系统配置</template>
@@ -27,6 +28,7 @@
 
 <script>
 import Tabs from '@/components/tabs'
+import axios from 'axios'
 export default {
   name: 'customMenu',
   components: {
@@ -39,14 +41,25 @@ export default {
       isCollapse: true
     }
   },
+  mounted () {
+    this.getMenu()
+  },
   methods: {
-    handleSelect () {
-    },
     handleOpen () {
     },
     handleClose () {},
     logout () {
       this.$router.push('/')
+    },
+    getMenu () {
+      // const that = this
+      axios({
+        method: 'get',
+        url: '/system/menu/getAllMenusWithChildren'
+      }).then(function (res) {
+        const data = res.data.data
+        console.log(data)
+      })
     }
   }
 }

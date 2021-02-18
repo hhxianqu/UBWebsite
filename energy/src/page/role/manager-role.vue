@@ -31,7 +31,7 @@
             label="操作"
             width="180">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
+              <el-button @click="updateRole(scope.row)" type="text" size="small">修改</el-button>
               <el-button type="text" size="small">禁用</el-button>
               <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
             </template>
@@ -48,25 +48,45 @@
         <el-col :span="6">
           <h4>权限列表</h4>
           <el-tree
+            :data="nodeData"
             :props="props"
-            :load="loadNode"
-            lazy
+            node-key="id"
             show-checkbox
             @check-change="handleCheckChange">
+            <span class="custom-tree-node" slot-scope="{ node, data }">
+              <span>{{ node.label }}</span>
+              <span>
+                <el-button
+                  type="text"
+                  size="mini"
+                  @click="() => append(data)">
+                  Append
+                </el-button>
+                <el-button
+                  type="text"
+                  size="mini"
+                  @click="() => remove(node, data)">
+                  Delete
+                </el-button>
+              </span>
+            </span>
           </el-tree>
         </el-col>
         </el-row>
 
-      <change-role :roleDialogVisible="roleDialogVisible" @closeRoleDialog="closeRoleDialog"/>
+      <add-role :roleDialogVisible="addDialogVisible" @closeRoleDialog="addCloseDialog"/>
+      <change-role :roleDialogVisible="changeDialogVisible" @closeRoleDialog="changeCloseDialog"/>
     </div>
 </template>
 
 <script>
 import ChangeRole from '@/page/role/change-role'
+import AddRole from '@/page/role/add-role'
 import axios from 'axios'
 export default {
   components: {
-    ChangeRole: ChangeRole
+    ChangeRole: ChangeRole,
+    AddRole: AddRole
   },
   data () {
     return {
@@ -74,10 +94,12 @@ export default {
         newPwd: '',
         pwdAgain: ''
       },
-      roleDialogVisible: false,
+      changeDialogVisible: false,
+      addDialogVisible: false,
+      nodeData: [],
       props: {
         label: 'name',
-        children: 'zones'
+        children: 'children'
       },
       tableData: [],
       limit: 10,
@@ -87,18 +109,38 @@ export default {
   },
   mounted () {
     this.getRole(1)
+    this.getMenu()
   },
   methods: {
     addRole () {
-      this.roleDialogVisible = true
+      this.addDialogVisible = true
     },
-    closeRoleDialog () {
-      this.roleDialogVisible = false
+    addCloseDialog () {
+      this.addDialogVisible = false
       this.getRole(this.currentPage)
+    },
+    updateRole () {
+      this.changeCloseDialog = true
+    },
+    changeCloseDialog () {
+      this.changeDialogVisible = false
+      this.getRole(this.currentPage)
+    },
+    append (data) {
+      const newChild = { label: 'testtest', children: [] }
+      if (!data.children) {
+        this.$set(data, 'children', [])
+      }
+      data.children.push(newChild)
+    },
+    remove (node, data) {
+      const parent = node.parent
+      const children = parent.data.children || parent.data
+      const index = children.findIndex(d => d.id === data.id)
+      children.splice(index, 1)
     },
     changeRole () {},
     deleteRole () {},
-    handleClick () {},
     handleDelete (id) {
       const that = this
       axios({
@@ -115,35 +157,27 @@ export default {
       })
     },
     handleCheckChange () {},
-    loadNode (node, resolve) {
-      if (node.level === 0) {
-        return resolve([{ name: '系统配置' }, { name: '供配电管理' }])
-      }
-      if (node.level > 3) return resolve([])
-
-      var hasChild
-      if (node.data.name === '系统配置') {
-        hasChild = true
-      } else if (node.data.name === '供配电管理') {
-        hasChild = false
-      } else {
-        hasChild = Math.random() > 0.5
-      }
-
-      setTimeout(() => {
-        var data
-        if (hasChild) {
-          data = [{
-            name: '角色管理'
-          }, {
-            name: '用户管理'
-          }]
-        } else {
-          data = []
-        }
-
-        resolve(data)
-      }, 500)
+    getMenu () {
+      const that = this
+      axios({
+        method: 'get',
+        url: '/system/menu/getAllMenusWithChildren'
+      }).then(function (res) {
+        const data = res.data.data
+        console.log(data)
+        data.forEach(element => {
+          const node = {}
+          node.id = element.id
+          node.name = element.name
+          node.children = element.children.map(e => {
+            return {
+              name: e.name,
+              id: e.id
+            }
+          })
+          that.nodeData.push(data)
+        })
+      })
     },
     getRole (page) {
       this.tableData = []

@@ -43,6 +43,7 @@ export default {
   data () {
     return {
       form: {
+        id: '',
         username: '',
         phone: '',
         remark: ''
@@ -62,8 +63,9 @@ export default {
       const that = this
       axios({
         method: 'post',
-        url: '/system/user/addUser',
+        url: '/system/user/updateUser',
         data: {
+          id: this.form.id,
           username: this.form.username,
           password: 123456,
           phone: this.form.phone,

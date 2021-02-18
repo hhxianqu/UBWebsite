@@ -40,7 +40,7 @@
             label="操作"
             width="200">
             <template slot-scope="scope">
-              <el-button @click="updateUser(scope.row)" type="text" size="small">修改</el-button>
+              <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
               <el-button type="text" size="small">{{scope.row.enabled === '禁用' ? "启用" : '禁用'}}</el-button>
               <el-button @click="handleDelete(scope.row.id)" type="text" size="small">删除</el-button>
               <el-button type="text" size="small">重置密码</el-button>
@@ -55,21 +55,16 @@
           :total="total">
         </el-pagination>
       </div>
-
-      <add-user :userDialogVisible="addDialogVisible" @addClose="addCloseDialog"/>
-      <change-user :userDialogVisible="updateDialogVisible" :userForm="userForm" @addClose="updateCloseDialog"/>
+      <change-user :userDialogVisible="userDialogVisible" @closeUserDialog="closeUserDialog"/>
     </div>
 </template>
 
 <script>
 import ChangeUser from '@/page/role/change-user-info'
-import AddUser from '@/page/role/add-user'
 import axios from 'axios'
-
 export default {
   components: {
-    ChangeUser: ChangeUser,
-    AddUser: AddUser
+    ChangeUser: ChangeUser
   },
   data () {
     return {
@@ -77,10 +72,8 @@ export default {
         newPwd: '',
         pwdAgain: ''
       },
-      addDialogVisible: false,
-      updateDialogVisible: false,
+      userDialogVisible: false,
       tableData: [],
-      userForm: {},
       currentPage: 1,
       total: 0,
       limit: 10
@@ -91,24 +84,15 @@ export default {
   },
   methods: {
     addUser () {
-      this.addDialogVisible = true
+      this.userDialogVisible = true
     },
-    addCloseDialog () {
-      this.addDialogVisible = false
-      this.getUser(this.currentPage)
-    },
-    updateUser (row) {
-      console.log(row)
-      this.updateDialogVisible = true
-      this.userForm.username = row.username
-      this.userForm.id = row.id
-    },
-    updateCloseDialog () {
-      this.updateDialogVisible = false
+    closeUserDialog () {
+      this.userDialogVisible = false
       this.getUser(this.currentPage)
     },
     changeUser () {},
     deleteUser () {},
+    handleClick () {},
     handleDelete (id) {
       const that = this
       axios({

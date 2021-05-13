@@ -7,6 +7,7 @@ import Login from '@/page/login/login'
 import LoginManager from '@/page/login/login-manager'
 import Energy from '@/page/energy/energy'
 import Alarm from '@/page/alarm/alarm'
+import Monitor from '@/page/monitor/monitor'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
           path: '/alarm',
           name: 'Alarm',
           component: Alarm
+        },
+        {
+          path: '/monitor',
+          name: 'Monitor',
+          component: Monitor
         }
       ]
     }

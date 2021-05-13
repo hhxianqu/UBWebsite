@@ -31,22 +31,22 @@
             width="60">
           </el-table-column>
           <el-table-column
-            prop="username"
+            prop="startDate"
             label="发生时间"
-            width="160">
+            width="200">
           </el-table-column>
           <el-table-column
-            prop="role"
+            prop="unit"
             label="位置和单元"
             width="160">
           </el-table-column>
           <el-table-column
-            prop="enabled"
+            prop="type"
             label="类别"
             width="120">
           </el-table-column>
           <el-table-column
-            prop="phone"
+            prop="action"
             label="动作"
             width="160">
           </el-table-column>
@@ -120,35 +120,64 @@ export default {
         }
       })
     },
-    getAlarm (page) {
-      this.tableData = []
-      const that = this
-      axios({
-        method: 'post',
-        url: '/system/user/getAllUserWithRoles',
-        data: {
-          page: page,
-          limit: that.limit
+    getAlarm () {
+      this.tableData = [
+        {
+          id: '0',
+          startDate: 'YY-MM-DD:HH-MM-SS',
+          unit: '位置和单元',
+          type: '类别',
+          action: '动作'
+        },
+        {
+          id: '0',
+          startDate: 'YY-MM-DD:HH-MM-SS',
+          unit: '位置和单元',
+          type: '类别',
+          action: '动作'
+        },
+        {
+          id: '0',
+          startDate: 'YY-MM-DD:HH-MM-SS',
+          unit: '位置和单元',
+          type: '类别',
+          action: '动作'
+        },
+        {
+          id: '0',
+          startDate: 'YY-MM-DD:HH-MM-SS',
+          unit: '位置和单元',
+          type: '类别',
+          action: '动作'
         }
-      }).then(function (res) {
-        if (res.data.code === 200) {
-          const data = res.data.data
-          that.total = data.total
-          data.data.forEach(each => {
-            const eachTableData = {}
-            const role = each.roles.map(element => {
-              return element.nameZh
-            }).join(', ')
-            eachTableData.role = role
-            eachTableData.phone = each.phone
-            eachTableData.id = each.id
-            eachTableData.username = each.username
-            eachTableData.enabled = each.enabled ? '启用' : '禁用'
-            eachTableData.discribe = each.remark
-            that.tableData.push(eachTableData)
-          })
-        }
-      })
+      ]
+      // const that = this
+      // axios({
+      //   method: 'post',
+      //   url: '/system/user/getAllUserWithRoles',
+      //   data: {
+      //     page: page,
+      //     limit: that.limit
+      //   }
+      // }).then(function (res) {
+      //   if (res.data.code === 200) {
+      //     const data = res.data.data
+      //     that.total = data.total
+      //     data.data.forEach(each => {
+      //       const eachTableData = {}
+      //       const role = each.roles.map(element => {
+      //         return element.nameZh
+      //       }).join(', ')
+      //       eachTableData.role = role
+      //       eachTableData.phone = each.phone
+      //       eachTableData.id = each.id
+      //       eachTableData.username = each.username
+      //       eachTableData.enabled = each.enabled ? '启用' : '禁用'
+      //       eachTableData.discribe = each.remark
+      //       that.tableData.push(eachTableData)
+      //     })
+      //   }
+      // })
     },
     handleCurrentChange (val) {
       this.getAlarm(val)

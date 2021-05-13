@@ -12,6 +12,7 @@
           </el-submenu>
           <el-menu-item index="/energy">供配电管理</el-menu-item>
           <el-menu-item index="/alarm">事件报警</el-menu-item>
+          <el-menu-item index="/monitor">连接状态监控</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20">
